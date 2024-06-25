@@ -3,6 +3,7 @@ package br.com.cotiinformatica.repositories;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class ProdutoRepository {
 
 		Connection connection = ConnectionFactory.getConnection();
 
-		PreparedStatement statement = connection.prepareStatement(query);
+		PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 		statement.setString(1, produto.getNome());
 		statement.setDouble(2, produto.getPreco());
 		statement.setInt(3, produto.getQuantidade());
@@ -35,7 +36,7 @@ public class ProdutoRepository {
 
 	public void update(Produto produto) throws Exception {
 
-		String query = "UPDATE produto SET nome=?, preco=?, quantidade=?, categoria_id=?, WHERE id=?";
+		String query = "UPDATE produto SET nome=?, preco=?, quantidade=?, categoria_id=? WHERE id=?";
 
 		Connection connection = ConnectionFactory.getConnection();
 
