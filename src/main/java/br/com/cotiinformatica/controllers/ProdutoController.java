@@ -66,8 +66,7 @@ public class ProdutoController {
 		//consultando o produto no banco de dados através do id
 		Produto produtoAtualizado = produtoRepository.findById(id);
 		
-		return modelMapper.map(produtoAtualizado, ProdutoResponseDto.class);
-		
+		return modelMapper.map(produtoAtualizado, ProdutoResponseDto.class);		
 	}
 
 	@DeleteMapping("{id}")
